@@ -1,0 +1,87 @@
+package entity;
+
+import java.util.Random;
+
+import main.GamePanel;
+
+public class NPC_OldMan extends Entity {
+
+	
+	public NPC_OldMan(GamePanel gp) {
+		
+		super(gp);
+		
+		name = "Old Man";
+		direction = "down";
+		speed = 1;
+		
+		getImages();
+		setDialogue();
+		
+	}
+	
+	
+	// gets the images from the filepaths
+	public void getImages() {
+		
+		up1 = setup("/npcs/oldman_up_1", gp.tileSize, gp.tileSize);
+		up2 = setup("/npcs/oldman_up_2", gp.tileSize, gp.tileSize);
+		down1 = setup("/npcs/oldman_down_1", gp.tileSize, gp.tileSize);
+		down2 = setup("/npcs/oldman_down_2", gp.tileSize, gp.tileSize);
+		left1 = setup("/npcs/oldman_left_1", gp.tileSize, gp.tileSize);
+		left2 = setup("/npcs/oldman_left_2", gp.tileSize, gp.tileSize);
+		right1 = setup("/npcs/oldman_right_1", gp.tileSize, gp.tileSize);
+		right2 = setup("/npcs/oldman_right_2", gp.tileSize, gp.tileSize);
+		
+	}
+	
+	
+	public void setDialogue() {
+		
+		dialogues[0] = "Hello lad.";
+		dialogues[1] = "So you've come to this island to \nfind the treasure?";
+		dialogues[2] = "I used to be a great wizard, but now... \nI'm a bit too old for adventures.";
+		dialogues[3] = "Well, good luck on your quest.";
+		
+	}
+	
+	// sets the characters behavior
+	public void setAction() {
+		
+		actionLockCounter++;
+		
+		if (actionLockCounter == 120) {
+			
+			Random rand = new Random();
+			int i = rand.nextInt(100) + 1; // random num from 1-100
+			
+			// randomly picks a direction with 1/4 chance for each
+			if (i <= 25) {
+				direction = "up";
+			}
+			if (i > 25 && i <= 50) {
+				direction = "down";
+			}
+			if (i > 50 && i <= 75) {
+				direction = "left";
+			}
+			if (i > 75 && i <= 100) {
+				direction = "right";
+			}
+			
+			actionLockCounter = 0;
+			
+		}
+		
+	}
+	
+	
+	public void speak() {
+	
+		// Do this character's specific stuff
+		
+		super.speak();
+		
+	}
+	
+}
