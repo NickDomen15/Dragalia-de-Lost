@@ -207,7 +207,7 @@ public class Player extends Entity {
 			gp.keyH.enterPressed = false;
 			
 			// IF COLLISION IS FALSE, PLAYER CAN MOVE
-			if (collisionOn == false && keyH.enterPressed == false && attacking == false) {
+			if (collisionOn == false && keyH.enterPressed == false && attacking == false && chargeCounter == 0) {
 				
 				if (direction == "up") {
 					worldY -= speed;
@@ -342,7 +342,7 @@ public class Player extends Entity {
 	
 	public void chargedAttack() {
 		
-		
+		chargeReleased = false;
 		
 	}
 	
@@ -496,6 +496,11 @@ public class Player extends Entity {
 //		g2.drawString("iFrames: " + iFrames, 10, 400);
 		
 		// DEBUG
+		
+		g2.setColor(Color.red);
+		g2.setStroke(new BasicStroke(1));
+		g2.drawRect(tempScreenX + solidArea.x, tempScreenY + solidArea.x, solidArea.width, solidArea.height);
+		
 		// AttackArea
 		tempScreenX = screenX + solidArea.x;
 		tempScreenY = screenY + solidArea.y;		
@@ -504,7 +509,8 @@ public class Player extends Entity {
 		case "down": tempScreenY = screenY + 30; tempScreenX = screenX - 12; break; 
 		case "left": tempScreenX = screenX - attackArea.width; break;
 		case "right": tempScreenX = screenX + gp.tileSize; break;
-		}				
+		}	
+		
 		g2.setColor(Color.red);
 		g2.setStroke(new BasicStroke(1));
 		g2.drawRect(tempScreenX, tempScreenY, attackArea.width, attackArea.height);

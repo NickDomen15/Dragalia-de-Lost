@@ -1,6 +1,8 @@
 package entity;
 
 import java.awt.AlphaComposite;
+import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -115,15 +117,15 @@ public class Entity {
 			
 		}
 		
-		// IF COLLISION IS FALSE, PLAYER CAN MOVE
+		// IF COLLISION IS FALSE, ENTITY CAN MOVE
 		if (collisionOn == false) {
 						
 			if (direction == "up") {
 				worldY -= speed;
 			}
-			else if (direction == "down") {
-				worldY += speed;
-			}
+//			else if (direction == "down") {
+//				worldY += speed;
+//			}
 			else if (direction == "left") {
 				worldX -= speed;
 			}
@@ -205,6 +207,10 @@ public class Entity {
 			
 			// reset transparancy
 			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+			
+			g2.setColor(Color.red);
+			g2.setStroke(new BasicStroke(1));
+			g2.drawRect(screenX, screenY, solidArea.width, solidArea.height);
 		}
 		
 	}
