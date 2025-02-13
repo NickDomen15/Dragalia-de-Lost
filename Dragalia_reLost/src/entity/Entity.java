@@ -105,6 +105,7 @@ public class Entity {
 		gp.cChecker.checkObject(this, false);
 		gp.cChecker.checkEntity(this, gp.npc);
 		gp.cChecker.checkEntity(this, gp.mon);
+		
 		boolean contactPlayer = gp.cChecker.checkPlayer(this);
 		
 		// if monster contacts player
@@ -118,22 +119,22 @@ public class Entity {
 		}
 		
 		// IF COLLISION IS FALSE, ENTITY CAN MOVE
-		if (collisionOn == false) {
-						
-			if (direction == "up") {
-				worldY -= speed;
-			}
+//		if (collisionOn == false) {
+//						
+//			if (direction == "up") {
+//				worldY -= speed;
+//			}
 //			else if (direction == "down") {
 //				worldY += speed;
 //			}
-			else if (direction == "left") {
-				worldX -= speed;
-			}
-			else if (direction == "right") {
-				worldX += speed;
-			}
-						
-		}
+//			else if (direction == "left") {
+//				worldX -= speed;
+//			}
+//			else if (direction == "right") {
+//				worldX += speed;
+//			}
+//						
+//		}
 					
 		spriteCounter++;
 					
@@ -210,7 +211,8 @@ public class Entity {
 			
 			g2.setColor(Color.red);
 			g2.setStroke(new BasicStroke(1));
-			g2.drawRect(screenX, screenY, solidArea.width, solidArea.height);
+			g2.drawRect(screenX + solidArea.x, screenY + solidArea.y, solidArea.width, solidArea.height);
+		
 		}
 		
 	}

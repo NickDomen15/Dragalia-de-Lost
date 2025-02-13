@@ -48,30 +48,30 @@ public class NPC_OldMan extends Entity {
 	// sets the characters behavior
 	public void setAction() {
 		
-		actionLockCounter++;
-		
-		if (actionLockCounter == 120) {
-			
-			Random rand = new Random();
-			int i = rand.nextInt(100) + 1; // random num from 1-100
-			
-			// randomly picks a direction with 1/4 chance for each
-			if (i <= 25) {
-				direction = "up";
-			}
-			if (i > 25 && i <= 50) {
-				direction = "down";
-			}
-			if (i > 50 && i <= 75) {
-				direction = "left";
-			}
-			if (i > 75 && i <= 100) {
-				direction = "right";
-			}
-			
-			actionLockCounter = 0;
-			
-		}
+//		actionLockCounter++;
+//		
+//		if (actionLockCounter == 120) {
+//			
+//			Random rand = new Random();
+//			int i = rand.nextInt(100) + 1; // random num from 1-100
+//			
+//			// randomly picks a direction with 1/4 chance for each
+//			if (i <= 25) {
+//				direction = "up";
+//			}
+//			if (i > 25 && i <= 50) {
+//				direction = "down";
+//			}
+//			if (i > 50 && i <= 75) {
+//				direction = "left";
+//			}
+//			if (i > 75 && i <= 100) {
+//				direction = "right";
+//			}
+//			
+//			actionLockCounter = 0;
+//			
+//		}
 		
 	}
 	

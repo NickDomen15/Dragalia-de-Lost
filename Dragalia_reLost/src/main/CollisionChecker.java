@@ -1,5 +1,7 @@
 package main;
 
+import java.util.ArrayList;
+
 import entity.Entity;
 
 public class CollisionChecker {
@@ -220,6 +222,7 @@ public class CollisionChecker {
 		return index;
 		
 	}
+	
 	
 	
 	// Checks NPC or monster collisions with the player

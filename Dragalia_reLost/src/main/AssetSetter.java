@@ -52,7 +52,12 @@ public class AssetSetter {
 		
 		gp.mon[1] = new MON_Slime(gp);
 		gp.mon[1].worldX = gp.tileSize*23;
-		gp.mon[1].worldY = gp.tileSize*37;
+		gp.mon[1].worldY = gp.tileSize*40;
+		
+		gp.mon[2] = new MON_Slime(gp);
+		gp.mon[2].worldX = gp.tileSize*23;
+		gp.mon[2].worldY = gp.tileSize*20;
+	
 		
 	}
 	

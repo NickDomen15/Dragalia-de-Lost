@@ -43,15 +43,17 @@ public class Player extends Entity {
 		 *  that can make collisions with objects
 		 */
 		solidArea = new Rectangle();
-		solidArea.x = 8;
-		solidArea.y = 16;
+		solidArea.x = 15;
+		solidArea.y = 18;
 		solidAreaDefaultX = solidArea.x;
 		solidAreaDefaultY = solidArea.y;
-		solidArea.width = 32;
+		solidArea.width = 18;
 		solidArea.height = 30;
 		
+		attackArea = new Rectangle();
 		attackArea.width = 75;
 		attackArea.height = 36;
+		
 		
 		setDefaultValues();
 		getPlayerImages();
@@ -131,13 +133,13 @@ public class Player extends Entity {
 			chargeCounter++;
 			
 			if (chargeCounter < 30) {
-				System.out.println("Charging...");
+				//System.out.println("Charging...");
 			}
 			
 			if (chargeCounter >= 30) {
 				
 				charged = true;
-				System.out.println("Charged!");
+				//System.out.println("Charged!");
 			}
 			
 		}
@@ -148,7 +150,7 @@ public class Player extends Entity {
 			cListener.mouseReleased = false;
 			chargeCounter = 0;
 			
-			System.out.println("Charge didn't finish");
+			//System.out.println("Charge didn't finish");
 			
 		}
 		
@@ -160,7 +162,7 @@ public class Player extends Entity {
 			chargeReleased = true;
 			chargeCounter = 0;
 			
-			System.out.println("Charged attack!!");
+			//System.out.println("Charged attack!!");
 			
 		}
 		
@@ -170,7 +172,7 @@ public class Player extends Entity {
 		}
 		
 		// if there is a key input, change the players direction and start moving
-		if (keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true || keyH.rightPressed == true || keyH.enterPressed == true && attacking == false) {
+		if (keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true || keyH.rightPressed == true && attacking == false) {
 			
 			if (keyH.upPressed == true) {
 				direction = "up";
@@ -290,11 +292,14 @@ public class Player extends Entity {
 		int currentWorldY = worldY;
 		int solidAreaWidth = solidArea.width;
 		int solidAreaHeight = solidArea.height;
+		solidArea.x = 0;
+		solidArea.y = 0;
 		
 		
 		// adjust player's worldX/Y for attackArea
 		if (direction == "up") {
 			worldX -= 15;
+			worldY -= 6;
 		}
 		else if (direction == "down") {
 			worldX -= 12;
@@ -311,8 +316,28 @@ public class Player extends Entity {
 		solidArea.width = attackArea.width;
 		solidArea.height = attackArea.height;
 		
+		
+//		if (direction == "up") {
+//			
+//			attackArea.x = -9;
+//			attackArea.y = -6;
+//			attackArea.width = 75;
+//			attackArea.height = 36;
+//			
+//		}
+//		else if (direction == "down") {
+//			
+//			attackArea.x = -12;
+//			attackArea.y = 30;
+//			attackArea.width = 75;
+//			attackArea.height = 36;
+//			
+//		}
+		
+		
 		// check monster collision with the updated worldX/Y and solidArea
 		int monsterIndex = gp.cChecker.checkEntity(this, gp.mon);
+		System.out.println(monsterIndex);
 		damageMonster(monsterIndex);
 		
 		// restore original worldX/Y and solidArea
@@ -320,6 +345,8 @@ public class Player extends Entity {
 		worldY = currentWorldY;
 		solidArea.width = solidAreaWidth;
 		solidArea.height = solidAreaHeight;
+		solidArea.x = solidAreaDefaultX;
+		solidArea.y = solidAreaDefaultY;
 		
 		
 		if (attackCounter <= 5) {
@@ -343,6 +370,7 @@ public class Player extends Entity {
 	public void chargedAttack() {
 		
 		chargeReleased = false;
+		// TODO add charged attack
 		
 	}
 	
@@ -394,7 +422,7 @@ public class Player extends Entity {
 	
 	public void damageMonster(int i) {
 		
-		// if i == 999, no monster hit
+		// if i == 999, no monster was hit
 		if (i != 999) {
 			
 			if (gp.mon[i].invincible == false) {
@@ -494,26 +522,23 @@ public class Player extends Entity {
 //		g2.setFont(new Font("Arial", Font.PLAIN,26));
 //		g2.setColor(Color.white);
 //		g2.drawString("iFrames: " + iFrames, 10, 400);
-		
-		// DEBUG
-		
-		g2.setColor(Color.red);
-		g2.setStroke(new BasicStroke(1));
-		g2.drawRect(tempScreenX + solidArea.x, tempScreenY + solidArea.x, solidArea.width, solidArea.height);
-		
-		// AttackArea
-		tempScreenX = screenX + solidArea.x;
-		tempScreenY = screenY + solidArea.y;		
-		switch(direction) {
-		case "up": tempScreenY = screenY - 6; tempScreenX = screenX - 15; break;
-		case "down": tempScreenY = screenY + 30; tempScreenX = screenX - 12; break; 
-		case "left": tempScreenX = screenX - attackArea.width; break;
-		case "right": tempScreenX = screenX + gp.tileSize; break;
-		}	
+	
 		
 		g2.setColor(Color.red);
 		g2.setStroke(new BasicStroke(1));
-		g2.drawRect(tempScreenX, tempScreenY, attackArea.width, attackArea.height);
+		g2.drawRect(screenX + solidArea.x, screenY + solidArea.y, solidArea.width, solidArea.height);
+		
+		
+		if (direction == "up") {
+			
+			g2.drawRect(screenX - 15, screenY - 6, attackArea.width, attackArea.height);
+			
+		}
+		else if (direction == "down") {
+			
+			g2.drawRect(screenX - 12, screenY + 30, attackArea.width, attackArea.height);
+		
+		}
 		
 	}
 	
