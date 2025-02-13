@@ -172,7 +172,7 @@ public class Player extends Entity {
 		}
 		
 		// if there is a key input, change the players direction and start moving
-		if (keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true || keyH.rightPressed == true && attacking == false) {
+		if (keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true || keyH.rightPressed == true || keyH.enterPressed == true && attacking == false) {
 			
 			if (keyH.upPressed == true) {
 				direction = "up";
@@ -205,9 +205,7 @@ public class Player extends Entity {
 			
 			// CHECK EVENT
 			gp.eHandler.checkEvent();
-			
-			gp.keyH.enterPressed = false;
-			
+		
 			// IF COLLISION IS FALSE, PLAYER CAN MOVE
 			if (collisionOn == false && keyH.enterPressed == false && attacking == false && chargeCounter == 0) {
 				
@@ -228,7 +226,9 @@ public class Player extends Entity {
 			
 			gp.keyH.enterPressed = false;
 			
-			spriteCounter++;
+			if (chargeCounter == 0) {
+				spriteCounter++;
+			}
 			
 			/**
 			 * At each interval, checks the currently displayed 
