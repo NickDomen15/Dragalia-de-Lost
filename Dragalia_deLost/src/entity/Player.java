@@ -317,24 +317,6 @@ public class Player extends Entity {
 		solidArea.height = attackArea.height;
 		
 		
-//		if (direction == "up") {
-//			
-//			attackArea.x = -9;
-//			attackArea.y = -6;
-//			attackArea.width = 75;
-//			attackArea.height = 36;
-//			
-//		}
-//		else if (direction == "down") {
-//			
-//			attackArea.x = -12;
-//			attackArea.y = 30;
-//			attackArea.width = 75;
-//			attackArea.height = 36;
-//			
-//		}
-		
-		
 		// check monster collision with the updated worldX/Y and solidArea
 		int monsterIndex = gp.cChecker.checkEntity(this, gp.mon);
 		System.out.println(monsterIndex);
@@ -523,12 +505,12 @@ public class Player extends Entity {
 //		g2.setColor(Color.white);
 //		g2.drawString("iFrames: " + iFrames, 10, 400);
 	
-		
+		// draw player hitbox
 		g2.setColor(Color.red);
 		g2.setStroke(new BasicStroke(1));
 		g2.drawRect(screenX + solidArea.x, screenY + solidArea.y, solidArea.width, solidArea.height);
 		
-		
+		// draw player attack hitbox
 		if (direction == "up") {
 			
 			g2.drawRect(screenX - 15, screenY - 6, attackArea.width, attackArea.height);

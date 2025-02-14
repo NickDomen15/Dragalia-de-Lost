@@ -209,6 +209,7 @@ public class Entity {
 			// reset transparancy
 			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
 			
+			// draw hitbox
 			g2.setColor(Color.red);
 			g2.setStroke(new BasicStroke(1));
 			g2.drawRect(screenX + solidArea.x, screenY + solidArea.y, solidArea.width, solidArea.height);
